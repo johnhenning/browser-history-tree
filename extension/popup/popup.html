@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Browser History Tree</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      width: 320px;
+      min-height: 200px;
+      background: #0f1117;
+      color: #e2e8f0;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 13px;
+    }
+
+    header {
+      background: #1a1d27;
+      padding: 12px 14px;
+      border-bottom: 1px solid #2a2d3a;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    header h1 { font-size: 14px; font-weight: 700; }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #6b7280;
+      flex-shrink: 0;
+    }
+
+    .status-dot.online { background: #34d399; }
+    .status-dot.offline { background: #f87171; }
+
+    #status-text { font-size: 11px; color: #6b7280; margin-left: auto; }
+
+    section { padding: 12px 14px; border-bottom: 1px solid #2a2d3a; }
+
+    section:last-child { border-bottom: none; }
+
+    h2 { font-size: 11px; text-transform: uppercase; letter-spacing: 0.6px; color: #6b7280; margin-bottom: 8px; }
+
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 3px 0;
+      font-size: 12px;
+    }
+    .stat-row span:last-child { color: #6b7280; }
+
+    .btn-row {
+      display: flex;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    button {
+      flex: 1;
+      background: #2a2d3a;
+      color: #e2e8f0;
+      border: none;
+      border-radius: 6px;
+      padding: 7px 10px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    button:hover { background: #6366f1; }
+    button.primary { background: #6366f1; }
+    button.primary:hover { background: #4f46e5; }
+
+    #queue-notice {
+      background: rgba(251,191,36,0.1);
+      border: 1px solid rgba(251,191,36,0.3);
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 11px;
+      color: #fbbf24;
+      margin-top: 8px;
+      display: none;
+    }
+
+    #current-url {
+      font-size: 11px;
+      color: #22d3ee;
+      word-break: break-all;
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="status-dot" id="status-dot"></div>
+    <h1>🌳 History Tree</h1>
+    <span id="status-text">checking…</span>
+  </header>
+
+  <section>
+    <h2>Current Session</h2>
+    <div class="stat-row">
+      <span>Events recorded</span>
+      <span id="event-count">—</span>
+    </div>
+    <div class="stat-row">
+      <span>Offline queue</span>
+      <span id="queue-count">—</span>
+    </div>
+    <div id="queue-notice">Events queued — start the service to sync</div>
+    <div id="current-url"></div>
+  </section>
+
+  <section>
+    <h2>Actions</h2>
+    <div class="btn-row">
+      <button class="primary" id="btn-open-ui">Open Web UI</button>
+      <button id="btn-copy-summary">Copy Summary</button>
+    </div>
+  </section>
+
+  <script src="popup.js"></script>
+</body>
+</html>

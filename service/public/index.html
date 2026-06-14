@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Browser History Tree</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- Sidebar -->
+    <aside id="sidebar">
+      <div id="sidebar-header">
+        <h1>🌳 History Tree</h1>
+        <p class="tagline">Your navigation, visualized</p>
+      </div>
+
+      <div id="session-section">
+        <h2>Sessions</h2>
+        <div id="session-list">
+          <div class="loading">Loading sessions…</div>
+        </div>
+      </div>
+
+      <div id="export-section">
+        <h2>Export</h2>
+        <div class="export-buttons">
+          <button class="btn" data-format="markdown" title="Copy AI-ready Markdown summary">
+            📋 Markdown
+          </button>
+          <button class="btn" data-format="json" title="Download JSON data">
+            📦 JSON
+          </button>
+          <button class="btn" data-format="csv" title="Download CSV">
+            📊 CSV
+          </button>
+        </div>
+        <div id="export-feedback" class="hidden"></div>
+      </div>
+
+      <div id="stats-section">
+        <h2>Top Domains</h2>
+        <div id="stats-list"></div>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main id="main">
+      <div id="toolbar">
+        <div id="session-info">
+          <span id="session-label">Select a session</span>
+          <span id="event-count"></span>
+        </div>
+        <div id="view-toggle">
+          <button class="toggle-btn active" data-view="tree">🌳 Tree</button>
+          <button class="toggle-btn" data-view="timeline">📅 Timeline</button>
+        </div>
+        <div id="search-box">
+          <input type="text" id="search-input" placeholder="Filter by URL or title…" />
+        </div>
+      </div>
+
+      <div id="views">
+        <div id="tree-view" class="view active">
+          <div id="tree-hint">Select a session from the sidebar to view its navigation tree.</div>
+          <svg id="tree-svg"></svg>
+          <div id="tooltip" class="hidden"></div>
+        </div>
+
+        <div id="timeline-view" class="view">
+          <div id="timeline-content"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Node detail panel -->
+  <div id="detail-panel" class="hidden">
+    <button id="detail-close">✕</button>
+    <h3 id="detail-title"></h3>
+    <a id="detail-url" href="#" target="_blank" rel="noopener noreferrer"></a>
+    <dl>
+      <dt>Visited</dt><dd id="detail-time"></dd>
+      <dt>Transition</dt><dd id="detail-transition"></dd>
+      <dt>Session</dt><dd id="detail-session"></dd>
+    </dl>
+    <div id="detail-path">
+      <h4>Navigation path to here</h4>
+      <ol id="detail-path-list"></ol>
+    </div>
+  </div>
+
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

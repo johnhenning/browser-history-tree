@@ -1,0 +1,22 @@
+{
+  "name": "browser-history-tree-service",
+  "version": "1.0.0",
+  "description": "Backend service, CLI, and web UI for Browser History Tree",
+  "main": "src/server.js",
+  "bin": {
+    "browse-tree": "./bin/browse-tree.js"
+  },
+  "scripts": {
+    "start": "node bin/browse-tree.js serve",
+    "test": "node --test src/db.test.js"
+  },
+  "dependencies": {
+    "commander": "^12.0.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.3",
+    "express-rate-limit": "^7.4.1"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
